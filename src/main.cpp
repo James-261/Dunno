@@ -25,13 +25,8 @@ MAKE_HOOK_OFFSETLESS(Player_Start, void, Il2CppObject* self)
     std::string name = to_utf8(csstrtostr(csName));
 
     getLogger().info("Name was: %s", name);
+    CRASH_UNLESS(il2cpp_utils::SetFieldValue<Il2CppString*>(self, "savedName", il2cpp_utils::createcsstr("newName"))); 
     Player_Start(self);
-}
-
-MAKE_HOOK_OFFSETLESS(Player_Update, void, Il2CppObject* self)
-{
-    CRASH_UNLESS(il2cpp_utils::SetFieldValue<Il2CppString*>(self, "savedName", il2cpp_utils::createcsstr("newName")));    } 
-    Player_Update(self);
 }
 
 extern "C" void setup(ModInfo& info)
@@ -51,7 +46,6 @@ extern "C" void load()
     INFO("Installing hooks...");
 
     INSTALL_HOOK_OFFSETLESS(logger, Player_Start, il2cpp_utils::FindMethodUnsafe("GorillaComputer", "Player", "Awake", 0));
-    INSTALL_HOOK_OFFSETLESS(logger, Player_Update, il2cpp_utils::FindMethodUnsafe("GorillaComputer", "Player", "Update", 0));
 
     INFO("Installed hooks!");
 }

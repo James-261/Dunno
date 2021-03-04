@@ -25,7 +25,7 @@ MAKE_HOOK_OFFSETLESS(Player_Awake, void, Il2CppObject* self)
     std::string name = to_utf8(csstrtostr(csName));
 
     getLogger().info("Name was: %s", name);
-    CRASH_UNLESS(il2cpp_utils::SetFieldValue<Il2CppString*>(self, "savedName", il2cpp_utils::createcsstr("newName"))); 
+    CRASH_UNLESS(il2cpp_utils::SetFieldValue(self, "savedName", il2cpp_utils::createcsstr("newName"))); 
     Player_Awake(self);
 }
 
